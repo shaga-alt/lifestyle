@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Celebrity Life | Explore the Stars</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #090b12;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    padding: 22px 5%;
+    background: #111522;
+    border-bottom: 1px solid #303442;
+}
+
+.logo {
+    color: #e9bd70;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+header p {
+    color: #aaa;
+    margin-top: 8px;
+}
+
+.hero {
+    padding: 65px 5%;
+    text-align: center;
+    background: linear-gradient(135deg, #191b31, #402a42);
+}
+
+.hero h1 {
+    font-size: clamp(30px, 6vw, 55px);
+    margin-bottom: 16px;
+}
+
+.hero span {
+    color: #e9bd70;
+}
+
+.hero p {
+    color: #ddd;
+    line-height: 1.8;
+}
+
+.search {
+    padding: 25px 5%;
+    text-align: center;
+}
+
+input, select {
+    background: #181c29;
+    color: white;
+    border: 1px solid #383d50;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 16px;
+    margin: 5px;
+    max-width: 100%;
+}
+
+input {
+    width: min(450px, 95%);
+}
+
+select {
+    width: min(220px, 95%);
+}
+
+h2.section-title {
+    margin: 15px 5%;
+    font-size: 27px;
+}
+
+h2 span {
+    color: #e9bd70;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+    padding: 20px 5% 45px;
+}
+
+.card {
+    background: #141824;
+    border: 1px solid #292e3d;
+    border-radius: 13px;
+    overflow: hidden;
+    transition: .2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: #e9bd70;
+}
+
+.card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    background: #252a38;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.tag {
+    color: #e9bd70;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.card h3 {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.card p {
+    color: #bbb;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+button {
+    border: 0;
+    padding: 12px 16px;
+    border-radius: 7px;
+    background: #e9bd70;
+    color: #171717;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.card button {
+    width: 100%;
+}
+
+button:hover {
+    background: #ffda99;
+}
+
+.details {
+    display: none;
+    padding: 30px 5% 50px;
+    background: #101420;
+}
+
+.details.active {
+    display: block;
+}
+
+.details h2 {
+    color: #e9bd70;
+    font-size: 30px;
+    margin: 22px 0 12px;
+}
+
+.details h3 {
+    color: #e9bd70;
+    margin: 25px 0 10px;
+}
+
+.details p {
+    line-height: 1.8;
+    color: #ddd;
+}
+
+.profile-image {
+    width: min(100%, 550px);
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 20px 0;
+    background: #252a38;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.stat {
+    padding: 16px;
+    background: #202536;
+    border-radius: 9px;
+    overflow-wrap: anywhere;
+}
+
+.stat strong {
+    display: block;
+    color: #e9bd70;
+    margin-bottom: 8px;
+}
+
+.note {
+    font-size: 13px;
+    color: #999 !important;
+    margin-top: 18px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 5%;
+    background: #111522;
+    color: #999;
+    line-height: 1.8;
+}
+
+@media(max-width: 480px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .card img {
+        height: 175px;
+    }
+
+    .card-content {
+        padding: 11px;
+    }
+
+    .card h3 {
+        font-size: 16px;
+    }
+
+    .card p {
+        font-size: 13px;
+    }
+
+    .card button {
+        padding: 10px 5px;
+        font-size: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">CELEBRITY LIFE ✨</div>
+    <p>Discover their lives beyond fame.</p>
+</header>
+
+<section class="hero">
+    <h1>Inside the <span>Celebrity World</span></h1>
+
+    <p>
+        Explore famous people's careers, lifestyles, families,
+        cars, homes, businesses and earnings.
+        <br>
+        Discover the stories behind the stars.
+    </p>
+</section>
+
+<section class="search">
+    <input
+        id="search"
+        type="search"
+        placeholder="🔎 Search celebrities..."
+        oninput="renderCelebrities()"
+    >
+
+    <br>
+
+    <select id="category" onchange="renderCelebrities()">
+        <option value="All">All celebrities</option>
+        <option value="Football">Footballers</option>
+        <option value="Music">Musicians</option>
+        <option value="Basketball">Basketball</option>
+        <option value="Movies">Actors</option>
+        <option value="Creators">Online creators</option>
+    </select>
+</section>
+
+<h2 class="section-title">
+    Famous <span>Celebrities</span>
+</h2>
+
+<main class="grid" id="grid">
+    <p>Loading celebrities and
